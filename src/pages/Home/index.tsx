@@ -1,9 +1,8 @@
-import React from 'react'
 
 const Home = () => {
   return (
     <div>
-      
+        <span className='text-[1rem]'>hehasdasdsae</span>
     </div>
   )
 }
