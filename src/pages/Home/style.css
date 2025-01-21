@@ -135,7 +135,7 @@
 
 .Titre-Bloc-2 .title::before {
   content: "";
-  width: 42rem;
+  width: 28rem;
   height: 0.1rem;
   background: #bbbbbb;
   position: absolute;
@@ -145,7 +145,7 @@
 
 .Titre-Bloc-2 .title::after {
   content: "";
-  width: 42rem;
+  width: 28rem;
   height: 0.1rem;
   background: #bbbbbb;
   position: absolute;
@@ -948,4 +948,14 @@ option {
   right: 5%;
   padding: 1.2rem;
   border-radius: 22.2rem;
+}
+
+.header-arrow {
+  background: #f2542d;
+  padding: 1.6rem;
+  border-radius: 2.3rem;
+}
+
+.right-header {
+  margin-left: 23%;
 }

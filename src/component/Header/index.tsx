@@ -50,7 +50,7 @@ export default function Header({ setParams, data }: MyComponentProps) {
           </SheetContent>
         </Sheet>
 
-        <div className="hidden flex-col ml-[33%] md:flex md:flex-row ">
+        <div className="hidden flex-col right-header md:flex md:flex-row ">
           <img className="mr-[1.6rem]" src="./images/Mountains.svg" alt="" />
           <img
             className="mr-[1.6rem]"
@@ -58,9 +58,6 @@ export default function Header({ setParams, data }: MyComponentProps) {
             alt=""
           />
           <img className="mr-[1.6rem]" src="./images/Crosshair.svg" alt="" />
-          <div className="arrow-btn bg-custom-orange pl-[2rem] pt-[1rem] pb-[1rem] pr-[1.6rem] rounded-[3.3rem]">
-            <img src="./images/arrow.svg" alt="" />
-          </div>
 
           <nav className="navbar">
             <a href="" />

@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import {
   AccountSchema,
-  AccountType,            
+  AccountType,
   NosSchema,
   NosType,
 } from "@/schemaValidations/demo";
@@ -39,6 +39,8 @@ import "swiper/css/scrollbar";
 import "swiper/css/grid";
 
 import "./style.css";
+import "./reponsive.css";
+
 import { JoditEditor } from "./components/editor";
 import Loading from "@/component/Loading";
 
@@ -77,11 +79,11 @@ const Home = () => {
       allDay: true,
     },
   ]);
+
   const calendarComponentRef = useRef(null);
 
   const handleDateClick = (arg) => {
     alert(`${arg.dateStr}`);
-    console.log("asdsa", arg.dateStr);
   };
 
   const handleSelectedDates = (info) => {
@@ -106,8 +108,6 @@ const Home = () => {
   const [value, setValue] = useState("");
 
   const { data, isPending } = useDemoQuery(params);
-
-  console.log("params", params)
 
   const form = useForm<NosType>({
     resolver: zodResolver(NosSchema),
@@ -153,13 +153,9 @@ const Home = () => {
     }
   };
 
-  const handleclicka = () => {
-    console.log("hehe");
-  };
-
   const swiperRef = useRef<any>(null);
 
-  if(isPending) return <Loading />
+  if (isPending) return <Loading />;
 
   return (
     <>
@@ -247,7 +243,7 @@ const Home = () => {
         </div>
 
         <div className="Titre-Bloc-2">
-          <div className="title">Titre Bloc 2</div>
+          <div className="title">{data?.bloc_2?.title}</div>
           <div className="btn-2">
             <div className="btn-item">
               <img
@@ -255,7 +251,7 @@ const Home = () => {
                 src="./images/Mountains.svg"
                 alt=""
               />
-              <span>Activité 1</span>
+              <span>{data?.bloc_2?.cases[0]}</span>
             </div>
             <div className="btn-item">
               <img
@@ -263,7 +259,7 @@ const Home = () => {
                 src="./images/Fishing-icon-32px.svg"
                 alt=""
               />
-              <span>Activité 2</span>
+              <span>{data?.bloc_2?.cases[1]}</span>
             </div>
             <div className="btn-item">
               <img
@@ -271,7 +267,7 @@ const Home = () => {
                 src="./images/Crosshair.svg"
                 alt=""
               />
-              <span>Activité 3</span>
+              <span>{data?.bloc_2?.cases[2]}</span>
             </div>
           </div>
           <div className="map">
@@ -288,7 +284,7 @@ const Home = () => {
 
         <div className="Titre-Bloc-3">
           <div className="container">
-            <div className="title">Nos activités</div>
+            <div className="title">{data?.bloc_2_2?.title}</div>
             <div className="boxcalendar">
               <FullCalendar
                 schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
@@ -332,9 +328,9 @@ const Home = () => {
                   render={({ field }) => (
                     <FormItem>
                       <div className="form-name">
-                        <Label htmlFor="name">Nom:</Label>
+                        <Label htmlFor="name">{data?.bloc_2_2.btn_1[0]}:</Label>
                         <Input
-                          placeholder="Entrez votre nom"
+                          placeholder={data?.bloc_2_2.btn_1[1]}
                           id="name"
                           type="text"
                           className="w-full"
@@ -353,11 +349,11 @@ const Home = () => {
                   render={({ field }) => (
                     <FormItem>
                       <div className="form-email">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">{data?.bloc_2_2.btn_2[0]}</Label>
                         <Input
                           id="email"
                           type="email"
-                          placeholder="Entrez votre e-mail"
+                          placeholder={data?.bloc_2_2.btn_2[1]}
                           required
                           {...field}
                         />
@@ -426,10 +422,10 @@ const Home = () => {
 
                 <div className=" items-center gap-2 md:ml-auto flex btn-form-3">
                   <Button className="clear" variant="outline" type="reset">
-                    Clear All
+                    {data?.bloc_2_2.btn_5}
                   </Button>
                   <Button className="save" type="submit">
-                    Lưu thông tin
+                    {data?.bloc_2_2.btn_6}
                     <img src="./images/send-2.png" alt="" />
                   </Button>
                 </div>
@@ -441,9 +437,9 @@ const Home = () => {
         <div className="Titre-Bloc-4">
           <div className="container">
             <div className="title">
-              <span>Titre</span>
+              <span> {data?.bloc_3.title}</span>
               <Link to="">
-                <span>En savoir plus</span>{" "}
+                <span>{data?.bloc_3.more_info}</span>{" "}
                 <img src="./images/Vector-right.svg" alt="" />
               </Link>
             </div>
@@ -494,153 +490,19 @@ const Home = () => {
                   swiperRef.current = swiper;
                 }}
               >
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <div className="item">
-                    <img src="./images/image-slider.png" alt="" />
-                    <div className="title-sub">Case title</div>
-                    <div className="title-item">Case sous-titre</div>
-                    <div className="content">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </div>
-                  </div>
-                </SwiperSlide>
+                {data?.bloc_3.cases.map((item: any, index: number) => {
+                  return (
+                    <SwiperSlide>
+                      {" "}
+                      <div className="item" key={index}>
+                        <img src="./images/image-slider.png" alt="" />
+                        <div className="title-sub">{item.tagline}</div>
+                        <div className="title-item">{item.category}</div>
+                        <div className="content">{item.description}</div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
           </div>
@@ -651,24 +513,13 @@ const Home = () => {
             <div className="left">
               <img src="./images/Mask-group.svg" alt="" />
               <div className="title">
-                Des expériences inoubliables <span>Lorem Ipsum truc</span>
+                {data?.bloc_4.title} <span> {data?.bloc_4.text_title}</span>
               </div>
               <div className="content">
                 <div className="left"></div>
                 <div className="right">
-                  <div className="title">À propos de BASIC</div>
-                  <div className="text">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                  </div>
+                  <div className="title">{data?.bloc_4.subtitle}</div>
+                  <div className="text">{data?.bloc_4.text}</div>
                 </div>
               </div>
             </div>
@@ -680,28 +531,28 @@ const Home = () => {
             <div className="btn-bloc-5">
               <div className="btn1">
                 <img src="./images/btn1.svg" alt="" />
-                <div className="title">Authenticité</div>
-                <div className="text">Sous-titre</div>
+                <div className="title">{data?.bloc_4.pictos[0].title}</div>
+                <div className="text">{data?.bloc_4.pictos[0].description}</div>
               </div>
               <div className="btn1">
                 <img src="./images/btn2.svg" alt="" />
-                <div className="title">Authenticité</div>
-                <div className="text">Sous-titre</div>
+                <div className="title">{data?.bloc_4.pictos[1].title}</div>
+                <div className="text">{data?.bloc_4.pictos[0].description}</div>
               </div>
               <div className="btn1">
                 <img src="./images/btn3.svg" alt="" />
-                <div className="title">Authenticité</div>
-                <div className="text">Sous-titre</div>
+                <div className="title">{data?.bloc_4.pictos[2].title}</div>
+                <div className="text">{data?.bloc_4.pictos[0].description}</div>
               </div>
               <div className="btn1">
                 <img src="./images/bt4.svg" alt="" />
-                <div className="title">Authenticité</div>
-                <div className="text">Sous-titre</div>
+                <div className="title">{data?.bloc_4.pictos[3].title}</div>
+                <div className="text">{data?.bloc_4.pictos[0].description}</div>
               </div>
               <div className="btn1">
                 <img src="./images/btn5.svg" alt="" />
-                <div className="title">Authenticité</div>
-                <div className="text">Sous-titre</div>
+                <div className="title">{data?.bloc_4.pictos[4].title}</div>
+                <div className="text">{data?.bloc_4.pictos[0].description}</div>
               </div>
             </div>
           </div>
