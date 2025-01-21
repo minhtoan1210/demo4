@@ -2,6 +2,6 @@
 import httpClient from "../lib/http";
 
 const demoApiRequest = {
-  demo: (body: any) => httpClient.post('/nexus/gamelist', body),
+  demo: (params: any) => httpClient.get(`/pages?${params}`),
 };
 export default demoApiRequest;

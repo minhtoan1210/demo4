@@ -1,0 +1,66 @@
+import React from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import NavItems from "../NavItems";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+
+type MyComponentProps = {
+  setParams: React.Dispatch<React.SetStateAction<string>>;
+  params: string;
+};
+
+export default function Header({setParams, params}: MyComponentProps) {
+  console.log("hehe", params)
+  return (
+      <header className="top-0 flex h-16 items-center gap-4 bg-[rgba(86,44,44,0.7)] px-4 md:px-6 w-full fixed z-[99] pt-[2.3rem] pb-[2.3rem]">
+        <div className="flex items-center w-full justify-center">
+          <div className="logo mr-[8.9rem] ">
+            <img src="./images/LOGOSAMPLE.png" alt="" />
+          </div>
+          <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+            <NavItems className="text-muted-foreground transition-colors hover:text-foreground flex-shrink-0" />
+          </nav>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="shrink-0 md:hidden border-[0rem]"
+              >
+                <Menu
+                  style={{ width: "3.6rem", height: "3.6rem" }}
+                />
+                <span className="sr-only">Toggle navigation menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left">
+              <SheetHeader className="sr-only">
+                <SheetTitle />
+                <SheetDescription />
+              </SheetHeader>
+              <nav className="grid gap-6 text-lg font-medium">
+                <NavItems className="text-muted-foreground transition-colors hover:text-foreground" />
+              </nav>
+            </SheetContent>
+          </Sheet>
+
+          <div className="hidden flex-col ml-[33%] md:flex md:flex-row ">
+            <img className="mr-[1.6rem]" src="./images/Mountains.svg" alt="" />
+            <img className="mr-[1.6rem]" src="./images/Fishing-icon-32px.svg" alt="" />
+            <img className="mr-[1.6rem]" src="./images/Crosshair.svg" alt="" />
+            <div className="arrow-btn bg-custom-orange pl-[2rem] pt-[1rem] pb-[1rem] pr-[1.6rem] rounded-[3.3rem]">
+              <img src="./images/arrow.svg" alt="" />
+            </div>
+          </div>
+        </div>
+      </header>
+  );
+}

@@ -5,7 +5,6 @@ const httpClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
   timeout: 60 * 1000,
 })
 

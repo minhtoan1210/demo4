@@ -1,7 +1,4 @@
-import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/Footer";
-
 interface Props {
   children?: React.ReactNode;
 }
@@ -9,10 +6,10 @@ interface Props {
 function MainLayout({ children }: Props) {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       {children}
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

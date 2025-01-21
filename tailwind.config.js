@@ -1,17 +1,19 @@
+const pxToRem = (px, baseFontSize = 10) => `${px / baseFontSize}rem`;
 module.exports = {
+  darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./index.html",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
-      fontSize: {
-        '62.5': '62.5%',
-        '42.5': '42.5%',
+      colors: {
+        'custom-orange': '#F2542D',
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
