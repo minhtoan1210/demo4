@@ -19,7 +19,7 @@ httpClient.interceptors.request.use(
 
 httpClient.interceptors.response.use(
   (response) => {
-    return response
+    return response?.data[0]
   },
   (error) => {
     if (error?.response?.status === 401) {

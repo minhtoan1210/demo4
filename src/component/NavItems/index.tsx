@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 
@@ -22,11 +23,14 @@ const menuItems = [
   },
 ];
 
-export default function NavItems({ className }: { className?: string }) {
-  return menuItems.map((item) => {
+export default function NavItems({ className, data }: { className?: string, data:any }) {
+
+  console.log("data", data)
+
+  return data?.banner_menu.map((item:any,index: any) => {
     return (
-      <Link to={item.href} key={item.href} className={cn('text-[1.6rem] mr-[2.4rem] font-medium ',className)}>
-        <span className="text-[white]">{item.title}</span>
+      <Link to={""} key={index} className={cn('text-[1.6rem] mr-[2.4rem] font-medium ',className)}>
+        <span className="text-[white]">{item}</span>
       </Link>
     );
   });

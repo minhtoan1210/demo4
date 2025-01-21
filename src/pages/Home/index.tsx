@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import {
   AccountSchema,
-  AccountType,
+  AccountType,            
   NosSchema,
   NosType,
 } from "@/schemaValidations/demo";
@@ -12,14 +12,6 @@ import { Button } from "@/components/ui/button";
 import { useRef, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { useDemoQuery } from "@/queries/demo";
 import Header from "@/component/Header";
@@ -48,25 +40,7 @@ import "swiper/css/grid";
 
 import "./style.css";
 import { JoditEditor } from "./components/editor";
-
-// const options = [
-//   {
-//     value: "en",
-//     label: (
-//       // <div>
-//       // <img src={ukflag} width="20" alt="" />
-//       // </div>
-//     )
-//   }, //en
-//   {
-//     value: "de",
-//     label: (
-//       // <div>
-//       // <img src={deflag} width="20" alt="" />
-//       // </div>
-//     )
-//   } //de
-// ];
+import Loading from "@/component/Loading";
 
 const Home = () => {
   const [events, setEvents] = useState([
@@ -131,7 +105,9 @@ const Home = () => {
   const [params, setParams] = useState("en");
   const [value, setValue] = useState("");
 
-  const { data, refetch } = useDemoQuery(params);
+  const { data, isPending } = useDemoQuery(params);
+
+  console.log("params", params)
 
   const form = useForm<NosType>({
     resolver: zodResolver(NosSchema),
@@ -183,9 +159,11 @@ const Home = () => {
 
   const swiperRef = useRef<any>(null);
 
+  if(isPending) return <Loading />
+
   return (
     <>
-      <Header setParams={setParams} params={params} />
+      <Header data={data} setParams={setParams} />
 
       <div className="hone-page">
         <div className="banner">
@@ -208,7 +186,7 @@ const Home = () => {
         <div className="Titre-Bloc-1 mt-[8rem]">
           <div className="container">
             <div className="title">Titre Bloc 1</div>
-            <div className="text-sub">Sous-titre Bloc 1</div>
+            <div className="text-sub">{data?.bloc_1?.subtitle}</div>
             <div className="Bloc-1-item">
               <div className="item1 pt-[3rem]">
                 <img src="./images/bloc-img.png" alt="" />
@@ -822,6 +800,9 @@ const Home = () => {
         </div>
       </div>
       <Footer />
+      <div className="chat">
+        <img src="./images/chat.png" alt="" />
+      </div>
     </>
   );
 };

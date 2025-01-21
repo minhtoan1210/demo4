@@ -903,3 +903,49 @@ table tbody {
   margin: auto;
   width: 124rem;
 }
+
+.navbar {
+  background: #a299ae;
+  display: flex;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  margin-left: 1rem;
+  border-radius: 2.3rem;
+  align-content: center;
+  background: #f2542d;
+}
+
+.language-selector {
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+}
+
+option {
+  background: #a299ae;
+  color: #fff;
+}
+
+.navbar .language-selector{
+  font-size: 1.8rem;
+}
+
+.navbar .language-selector option{
+  font-size: 1.6rem;
+}
+
+.footer-basic {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat {
+  position: fixed;
+  background: rgba(242, 84, 45, 1);
+  z-index: 99;
+  bottom: 5%;
+  right: 5%;
+  padding: 1.2rem;
+  border-radius: 22.2rem;
+}
